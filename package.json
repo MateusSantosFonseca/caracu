@@ -1,6 +1,6 @@
 {
-  "name": "next-js-boilerplate",
-  "version": "3.26.0",
+  "name": "caracu",
+  "version": "1.0.0",
   "scripts": {
     "dev": "next dev",
     "build": "npm run db:migrate && next build",
@@ -14,7 +14,6 @@
     "db:generate": "drizzle-kit generate:sqlite",
     "db:migrate": "dotenv -c -- tsx ./scripts/dbMigrate.ts",
     "db:studio": "dotenv -c -- drizzle-kit studio",
-    "test:e2e": "playwright test",
     "prepare": "husky install",
     "postbuild": "next-sitemap"
   },
@@ -36,6 +35,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^18.2.0",
+    "better-sqlite3": "^9.1.1",
     "@commitlint/config-conventional": "^18.1.0",
     "@commitlint/cz-commitlint": "^18.2.0",
     "@next/bundle-analyzer": "^14.0.1",

@@ -11,7 +11,7 @@ export default function DashboardLayout({
   return (
     <div className="w-full px-1 text-gray-700 antialiased">
       <div className="mx-auto max-w-screen-md">
-        <header className="border-b border-gray-300">
+        <header className="border-b border-gray-300 pb-2">
           <div className="pb-8 pt-16">
             <h1 className="text-3xl font-bold text-gray-900">
               {AppConfig.title}
@@ -54,14 +54,7 @@ export default function DashboardLayout({
         <main>{children}</main>
 
         <footer className="border-t border-gray-300 py-8 text-center text-sm">
-          © Copyright {new Date().getFullYear()} {AppConfig.title}. Made with{' '}
-          <a href="https://creativedesignsguru.com">CreativeDesignsGuru</a>.
-          {/*
-           * PLEASE READ THIS SECTION
-           * I'm an indie maker with limited resources and funds, I'll really appreciate if you could have a link to my website.
-           * The link doesn't need to appear on every pages, one link on one page is enough.
-           * For example, in the `About` page. Thank you for your support, it'll mean a lot to me.
-           */}
+          © Copyright {new Date().getFullYear()} {AppConfig.title}.
         </footer>
       </div>
     </div>

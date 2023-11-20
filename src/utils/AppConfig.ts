@@ -3,6 +3,6 @@ export const AppConfig = {
   site_name: 'Caracu',
   title: 'Caracu',
   description:
-    'Caracu vai te ajudar a sortear os times de formas equilibradas!',
-  locale: 'pt=br',
+    'Cadastre e classifique os jogadores da sua pelada e sorteie times de forma equilibrada.',
+  locale: 'en',
 };
