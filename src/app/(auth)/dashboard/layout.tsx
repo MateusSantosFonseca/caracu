@@ -27,7 +27,15 @@ export default function DashboardLayout({
                     href="/dashboard/"
                     className="border-none text-gray-700 hover:text-gray-900"
                   >
-                    Dashboard
+                    Sorteador
+                  </Link>
+                </li>
+                <li className="mr-6">
+                  <Link
+                    href="/dashboard/guestbook/"
+                    className="border-none text-gray-700 hover:text-gray-900"
+                  >
+                    Jogadores
                   </Link>
                 </li>
                 <li className="mr-6">
@@ -35,7 +43,7 @@ export default function DashboardLayout({
                     href="/dashboard/user-profile/"
                     className="border-none text-gray-700 hover:text-gray-900"
                   >
-                    Manage your account
+                    Configurações da conta
                   </Link>
                 </li>
               </ul>

@@ -1,5 +1,5 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://example.com', // FIXME: Change to the production URL
+  siteUrl: 'https://main--charming-tartufo-c50854.netlify.app/', // FIXME: Change to the production URL
   generateRobotsTxt: true,
 };

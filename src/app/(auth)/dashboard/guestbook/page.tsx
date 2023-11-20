@@ -5,18 +5,17 @@ import { EditableGuestbookEntry } from '@/components/EditableGuestbookEntry';
 import { GuestbookForm } from '@/components/GuestbookForm';
 import { db } from '@/libs/DB';
 import { guestbookTable } from '@/models/Schema';
-import { Main } from '@/templates/Main';
 
 export const metadata: Metadata = {
-  title: 'Guestbook',
-  description: 'An example of CRUD operation',
+  title: 'Jogadores',
+  description: 'Gerencie os jogadores do seu time',
 };
 
 const Guestbook = async () => {
   const guestbook = await db.select().from(guestbookTable).all();
 
   return (
-    <Main>
+    <div className="mt-4">
       <GuestbookForm />
 
       <div className="mt-5">
@@ -32,7 +31,7 @@ const Guestbook = async () => {
           </div>
         ))}
       </div>
-    </Main>
+    </div>
   );
 };
 

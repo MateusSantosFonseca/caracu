@@ -9,9 +9,7 @@ export default function CenteredLayout({
 }) {
   const { userId } = auth();
 
-  if (userId) {
-    redirect('/dashboard');
-  }
+  if (userId) redirect('/dashboard');
 
   return (
     <div className="flex min-h-screen items-center justify-center">
