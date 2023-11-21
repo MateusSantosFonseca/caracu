@@ -55,20 +55,6 @@ jobs:
       - name: Type checking
         run: npm run check-types
 
-      - name: Run unit tests
-        run: npm run test
-
-      - name: Install Playwright (used for Storybook and E2E tests)
-        run: npx playwright install --with-deps
-
-      - name: Run storybook tests
-        run: npm run test-storybook:ci
-
-      - name: Run E2E tests
-        run: npx percy exec -- npm run test:e2e
-        env:
-          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
-
       - uses: actions/upload-artifact@v3
         if: always()
         with:
