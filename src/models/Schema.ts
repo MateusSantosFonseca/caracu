@@ -1,10 +1,21 @@
 import { sql } from 'drizzle-orm';
 import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
 
-export const guestbookTable = sqliteTable('guestbook', {
+export enum Position {
+  Pivo = 'pivo',
+  Fixo = 'fixo',
+  Ala = 'ala',
+}
+
+export const playerTable = sqliteTable('player', {
   id: integer('id').primaryKey(),
-  username: text('username').notNull(),
-  body: text('body').notNull(),
+  name: text('name').notNull(),
+  teamId: text('team_id').notNull(),
+  rating: integer('rating').notNull(),
+  position: text('position', {
+    enum: [Position.Ala, Position.Fixo, Position.Pivo],
+  }).notNull(),
+  stamina: integer('stamina').notNull(),
   createdAt: integer('created_at', { mode: 'timestamp' }).default(
     sql`(strftime('%s', 'now'))`,
   ),

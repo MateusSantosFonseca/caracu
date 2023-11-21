@@ -2,15 +2,19 @@
 
 import { useState } from 'react';
 
-import { GuestbookForm } from './GuestbookForm';
+import type { Position } from '@/models/Schema';
 
-type IEditableGuestbookEntryProps = {
+import { PlayerForm } from './PlayerForm';
+
+type IEditablePlayerEntryProps = {
   id: number;
-  username: string;
-  body: string;
+  name: string;
+  position: Position;
+  rating: number;
+  stamina: number;
 };
 
-const EditableGuestbookEntry = (props: IEditableGuestbookEntryProps) => {
+const EditablePlayerEntry = (props: IEditablePlayerEntryProps) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const handleEdit = () => {
@@ -44,19 +48,21 @@ const EditableGuestbookEntry = (props: IEditableGuestbookEntryProps) => {
 
       <div className="ml-1 grow">
         {isEditing ? (
-          <GuestbookForm
+          <PlayerForm
             edit
             id={props.id}
             defaultValues={{
-              username: props.username,
-              body: props.body,
+              name: props.name,
+              position: props.position,
+              rating: props.rating,
+              stamina: props.stamina,
             }}
             handleStopEditing={handleStopEditing}
           />
         ) : (
           <>
-            <span className="text-gray-500">{props.username}:</span>{' '}
-            <span className="text-gray-800">{props.body}</span>
+            <span className="text-gray-500">{props.name}:</span>{' '}
+            <span className="text-gray-800">{props.rating}</span>
           </>
         )}
       </div>
@@ -64,4 +70,4 @@ const EditableGuestbookEntry = (props: IEditableGuestbookEntryProps) => {
   );
 };
 
-export { EditableGuestbookEntry };
+export { EditablePlayerEntry };

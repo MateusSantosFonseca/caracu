@@ -8,6 +8,20 @@
       "when": 1693571350622,
       "tag": "0000_blushing_warhawk",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1700534352975,
+      "tag": "0001_jazzy_stingray",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1700534389453,
+      "tag": "0002_bright_sabra",
+      "breakpoints": true
     }
   ]
 }

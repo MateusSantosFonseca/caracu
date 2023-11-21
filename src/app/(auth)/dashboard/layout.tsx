@@ -32,7 +32,7 @@ export default function DashboardLayout({
                 </li>
                 <li className="mr-6">
                   <Link
-                    href="/dashboard/guestbook/"
+                    href="/dashboard/players/"
                     className="border-none text-gray-700 hover:text-gray-900"
                   >
                     Jogadores
