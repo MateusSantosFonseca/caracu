@@ -69,8 +69,9 @@ export const DELETE = async (request: Request) => {
     const json = await request.json();
     const body = DeletePlayerSchema.parse(json);
 
-    await db.delete(playerTable).where(eq(playerTable.id, body.id)).run();
-
+    console.log('Before running');
+    await db.delete(playerTable).where(eq(playerTable.id, body.id));
+    console.log('After running');
     return NextResponse.json({});
   } catch (error) {
     if (error instanceof z.ZodError) {

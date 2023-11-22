@@ -32,19 +32,18 @@ const Player = async () => {
         <div className="mb-3 text-lg font-semibold text-gray-700">
           Lista de jogadores
         </div>
-        {players.map((elt) => (
+        {players.map((player) => (
           <div
-            key={elt.id}
+            key={player.id}
             className="mb-1 flex items-center space-x-1 py-1.5 md:py-1"
           >
-            <DeletePlayerEntry id={elt.id} />
-
+            <DeletePlayerEntry id={player.id} />
             <EditablePlayerEntry
-              id={elt.id}
-              name={elt.name}
-              position={elt.position}
-              rating={elt.rating}
-              stamina={elt.stamina}
+              id={player.id}
+              name={player.name}
+              position={player.position}
+              rating={player.rating}
+              stamina={player.stamina}
             />
           </div>
         ))}
