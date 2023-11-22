@@ -30,6 +30,7 @@ export const POST = async (request: Request) => {
       return NextResponse.json(error.format(), { status: 422 });
     }
 
+    console.log('Error while adding player', error);
     return NextResponse.json({}, { status: 500 });
   }
 };
@@ -58,6 +59,7 @@ export const PUT = async (request: Request) => {
       return NextResponse.json(error.format(), { status: 422 });
     }
 
+    console.log('Error while editing player', error);
     return NextResponse.json({}, { status: 500 });
   }
 };
@@ -75,6 +77,7 @@ export const DELETE = async (request: Request) => {
       return NextResponse.json(error.format(), { status: 422 });
     }
 
+    console.log('Error while deleting player', error);
     return NextResponse.json({}, { status: 500 });
   }
 };
