@@ -60,10 +60,24 @@ const EditablePlayerEntry = (props: IEditablePlayerEntryProps) => {
             handleStopEditing={handleStopEditing}
           />
         ) : (
-          <>
-            <span className="text-gray-500">{props.name}:</span>{' '}
-            <span className="text-gray-800">{props.rating}</span>
-          </>
+          <div className="flex space-x-2">
+            <div>
+              <span className="font-semibold text-gray-700">Nome: </span>
+              <span className="text-gray-600">{props.name}</span>
+            </div>
+            <div>
+              <span className="font-semibold text-gray-700">Rating: </span>
+              <span className="text-gray-600">{props.rating}</span>
+            </div>
+            <div>
+              <span className="font-semibold text-gray-700">Ritmo: </span>
+              <span className="text-gray-600">{props.stamina}</span>
+            </div>
+            <div>
+              <span className="font-semibold text-gray-700">Posição: </span>
+              <span className="text-gray-600">{props.position}</span>
+            </div>
+          </div>
         )}
       </div>
     </>

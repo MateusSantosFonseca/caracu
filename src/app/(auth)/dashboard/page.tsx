@@ -1,16 +1,29 @@
+import { auth } from '@clerk/nextjs';
+import { sql } from 'drizzle-orm';
 import type { Metadata } from 'next';
 
-import { Hello } from '@/components/Hello';
+import { TeamDraw } from '@/components/TeamDraw';
+import { db } from '@/libs/DB';
+import { playerTable } from '@/models/Schema';
 
 export const metadata: Metadata = {
-  title: 'Dashboard',
-  description: 'User dashboard',
+  title: 'Team Draw',
+  description: 'Team Draw',
 };
 
-const Dashboard = () => (
-  <div className="content">
-    <Hello />
-  </div>
-);
+const Dashboard = async () => {
+  const { userId } = auth();
+  const players = await db
+    .select()
+    .from(playerTable)
+    .where((aliases) => sql`${aliases.teamId} = ${userId}`)
+    .all();
+
+  return (
+    <div className="content">
+      <TeamDraw players={players} />
+    </div>
+  );
+};
 
 export default Dashboard;
