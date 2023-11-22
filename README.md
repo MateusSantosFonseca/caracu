@@ -1,5 +1,5 @@
-# TeamBalancer: Smart Team Drawing Application
-🌟 TeamBalancer is an intelligent team drawing application designed to help you create balanced teams effortlessly. 
+# Caracu: Smart Team Drawing Application
+🌟 Caracu is an intelligent team drawing application designed to help you create balanced teams effortlessly. 
 It allows you to sign up (as a team), log in, manage players and their characteristics (CRUD), and perform team draws with ease.
 
 ### Build status
