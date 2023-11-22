@@ -8,7 +8,9 @@ import {
   ModalFooter,
   ModalHeader,
 } from '@nextui-org/react';
+import React from 'react';
 import Reactmarkdown from 'react-markdown';
+import { toast } from 'react-toastify';
 
 interface DrawedTeamModalProps {
   markdownResult: string;
@@ -22,7 +24,12 @@ export const DrawedTeamModal = ({
   onOpenChange,
 }: DrawedTeamModalProps) => {
   return (
-    <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="5xl">
+    <Modal
+      isOpen={isOpen}
+      onOpenChange={onOpenChange}
+      size="5xl"
+      className="max-h-[90%] overflow-y-auto"
+    >
       <ModalContent>
         {(onClose) => (
           <>
@@ -31,10 +38,33 @@ export const DrawedTeamModal = ({
             </ModalHeader>
             <ModalBody>
               <Reactmarkdown>{markdownResult}</Reactmarkdown>
+              <button
+                type="button"
+                className="mt-4 rounded bg-purple-700 px-10 py-1 font-semibold text-white hover:bg-purple-600"
+                onClick={() => {
+                  navigator.clipboard.writeText(markdownResult);
+
+                  toast.success('Os times foram copiados para seu clipboard!', {
+                    position: 'top-center',
+                    autoClose: 4000,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    theme: 'light',
+                  });
+                }}
+              >
+                Copiar para o clipboard
+              </button>
             </ModalBody>
             <ModalFooter>
-              <Button color="primary" variant="light" onPress={onClose}>
-                Close
+              <Button
+                color="primary"
+                variant="light"
+                className="font-semibold"
+                onPress={onClose}
+              >
+                Fechar
               </Button>
             </ModalFooter>
           </>

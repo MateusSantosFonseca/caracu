@@ -9,12 +9,12 @@ type IMainProps = {
 };
 
 const Main = (props: IMainProps) => (
-  <div className="w-full px-2 text-gray-700 antialiased sm:px-4 md:px-6 lg:px-8">
+  <div className="w-full px-4 text-gray-700 antialiased md:px-6 lg:px-8">
     {props.meta}
 
     <div className="mx-auto max-w-screen-md">
       <header className="border-b border-gray-300 pb-2">
-        <div className="pb-8 pt-6 text-center sm:pt-10">
+        <div className="pb-8 pt-6 text-center sm:pt-10 sm:text-start">
           <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">
             {AppConfig.title}
           </h1>
