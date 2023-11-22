@@ -5,7 +5,11 @@ import { z } from 'zod';
 
 import { db } from '@/libs/DB';
 import { playerTable } from '@/models/Schema';
-import { EditPlayerSchema, PlayerSchema } from '@/validations/PlayerValidation';
+import {
+  DeletePlayerSchema,
+  EditPlayerSchema,
+  PlayerSchema,
+} from '@/validations/PlayerValidation';
 
 export const POST = async (request: Request) => {
   try {
@@ -63,7 +67,8 @@ export const PUT = async (request: Request) => {
 export const DELETE = async (request: Request) => {
   try {
     const json = await request.json();
-    const { id } = await JSON.parse(json);
+    const { id } = DeletePlayerSchema.parse(json);
+
     await db.delete(playerTable).where(eq(playerTable.id, id)).run();
     return NextResponse.json({});
   } catch (error) {

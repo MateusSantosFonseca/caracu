@@ -10,6 +10,12 @@ const DeletePlayerEntry = (props: IDeletePlayerEntryProps) => {
   const router = useRouter();
 
   const handleDelete = async () => {
+    console.log(
+      JSON.stringify({
+        id: props.id,
+      }),
+    );
+
     await fetch(`/api/player`, {
       method: 'DELETE',
       headers: {
