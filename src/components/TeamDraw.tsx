@@ -77,11 +77,11 @@ const TeamDraw = ({ players }: { players: IPlayer[] }) => {
         onOpenChange={onOpenChange}
       />
       <div className="space-y-8">
-        <div className="my-8 flex">
+        <div className="mb-4 mt-2 block">
           Olá, organizador do time
-          <div className="mx-1 font-semibold">
+          <span className="mx-1 font-semibold">
             {user?.username?.toString()}.
-          </div>
+          </span>
           Selecione ao menos 8 jogadores para realizar o sorteio.
         </div>
         <TeamDrawActions
@@ -89,7 +89,7 @@ const TeamDraw = ({ players }: { players: IPlayer[] }) => {
           isLoading={isLoading}
           selectedPlayers={selectedPlayers}
         />
-        <div className="grid grid-cols-12 space-x-4">
+        <div className="grid grid-cols-12 space-x-2 md:space-x-4">
           <div className="col-span-6">
             <TeamCards
               title="Jogadores disponíveis"

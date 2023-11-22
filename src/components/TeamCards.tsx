@@ -23,51 +23,47 @@ const TeamCards = (props: TeamCardsProps) => {
       <div className="font-semibold text-gray-800">{props.title}</div>
       <div className="space-y-2.5">
         {props.players.length > 0 ? (
-          props.players.map((availablePlayer) => (
+          props.players.map((player) => (
             <div
-              key={availablePlayer.id}
-              className="border border-gray-300 px-3 py-2"
+              key={player.id}
+              className="border border-gray-300 px-3 py-1.5"
               role="button"
               tabIndex={0}
-              onClick={() => props.onSelect(availablePlayer)}
+              onClick={() => props.onSelect(player)}
               onKeyDown={(e) => {
-                if (e.key === 'Enter') props.onSelect(availablePlayer);
+                if (e.key === 'Enter') props.onSelect(player);
               }}
             >
               <div className="space-y-1">
                 <div className="space-y-2">
                   <span className="font-semibold text-gray-700">Nome: </span>
-                  <span className="text-gray-700">{availablePlayer.name}</span>
+                  <span className="text-gray-700">{player.name}</span>
                 </div>
-                <div className="flex justify-between">
+                <div className="flex justify-between space-x-2">
                   <div>
                     <span className="font-semibold text-gray-700">
                       Posição:{' '}
                     </span>
                     <span className="text-gray-700">
-                      {capitalizeFirstLetter(availablePlayer.position)}
+                      {capitalizeFirstLetter(player.position)}
                     </span>
                   </div>
                   <div>
                     <span className="font-semibold text-gray-700">
                       Rating:{' '}
                     </span>
-                    <span className="text-gray-700">
-                      {availablePlayer.rating}
-                    </span>
+                    <span className="text-gray-700">{player.rating}</span>
                   </div>
                   <div>
                     <span className="font-semibold text-gray-700">Ritmo: </span>
-                    <span className="text-gray-700">
-                      {availablePlayer.stamina}
-                    </span>
+                    <span className="text-gray-700">{player.stamina}</span>
                   </div>
                 </div>
               </div>
             </div>
           ))
         ) : (
-          <div className="border border-gray-300 px-2 py-5 text-center text-gray-700">
+          <div className="border border-gray-300 px-2 py-7 text-center text-gray-700 md:py-5">
             Sem jogadores nessa lista
           </div>
         )}

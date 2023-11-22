@@ -9,21 +9,21 @@ type IMainProps = {
 };
 
 const Main = (props: IMainProps) => (
-  <div className="w-full px-1 text-gray-700 antialiased">
+  <div className="w-full px-2 text-gray-700 antialiased sm:px-4 md:px-6 lg:px-8">
     {props.meta}
 
     <div className="mx-auto max-w-screen-md">
       <header className="border-b border-gray-300 pb-2">
-        <div className="pb-8 pt-16">
-          <h1 className="text-3xl font-bold text-gray-900">
+        <div className="pb-8 pt-6 text-center sm:pt-10">
+          <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">
             {AppConfig.title}
           </h1>
-          <h2 className="text-xl">{AppConfig.description}</h2>
+          <h2 className="text-sm sm:text-base">{AppConfig.description}</h2>
         </div>
 
-        <div className="flex justify-between">
-          <nav>
-            <ul className="flex flex-wrap text-xl">
+        <div className="flex flex-col justify-center sm:flex-row sm:justify-between">
+          <nav className="mt-4 sm:mt-0">
+            <ul className="flex flex-wrap text-base sm:justify-start sm:text-lg">
               <li className="mr-6">
                 <Link
                   href="/"
@@ -45,10 +45,12 @@ const Main = (props: IMainProps) => (
         </div>
       </header>
 
-      <main className="content py-5 text-xl">{props.children}</main>
+      <main className="content py-3 text-sm sm:py-5 sm:text-base">
+        {props.children}
+      </main>
 
-      <footer className="border-t border-gray-300 py-4 text-center text-sm">
-        © Copyright {new Date().getFullYear()} {AppConfig.title}.
+      <footer className="border-t border-gray-300 py-2 text-center text-xs sm:text-sm">
+        © {new Date().getFullYear()} {AppConfig.title}.
       </footer>
     </div>
   </div>
