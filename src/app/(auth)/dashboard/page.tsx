@@ -7,8 +7,8 @@ import { db } from '@/libs/DB';
 import { playerTable } from '@/models/Schema';
 
 export const metadata: Metadata = {
-  title: 'Team Draw',
-  description: 'Team Draw',
+  title: 'Sorteio de times',
+  description: 'Sorteio de times',
 };
 
 const Dashboard = async () => {

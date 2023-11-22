@@ -37,7 +37,7 @@ const Main = (props: IMainProps) => (
                   href="/about/"
                   className="border-none text-gray-700 hover:text-gray-900"
                 >
-                  About
+                  Sobre
                 </Link>
               </li>
             </ul>

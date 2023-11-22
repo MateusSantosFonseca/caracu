@@ -89,15 +89,15 @@ export const generateTeamMarkdown = (teams: PlayerInterface[][]): string => {
       const playersInfo = team
         .map((player, idx) => {
           const ordinal = idx + 1;
-          return `**${ordinal}°** Name: ${player.name}, Rating: ${player.rating}, Stamina: ${player.stamina}, Position: ${player.position}`;
+          return `**${ordinal}°** Nome: ${player.name}, Rating: ${player.rating}, Ritmo: ${player.stamina}, Posição: ${player.position}`;
         })
         .join('\n\n');
 
       const totalRating = team.reduce((acc, player) => acc + player.rating, 0);
 
-      return `### **Team ${String.fromCharCode(
+      return `### **Time ${String.fromCharCode(
         65 + index,
-      )}**\n${playersInfo}\n\n###### *Total Rating: ${totalRating}*\n\n`;
+      )}**\n${playersInfo}\n\n###### *Rating total: ${totalRating}*\n\n`;
     })
     .join('\n');
 };
@@ -112,7 +112,7 @@ export const generateBenchMarkdown = (
   const playersInfo = benchPlayers
     .map((player, idx) => {
       const ordinal = idx + 1;
-      return `**${ordinal}°** Name: ${player.name}, Rating: ${player.rating}, Stamina: ${player.stamina}, Position: ${player.position}`;
+      return `**${ordinal}°** Nome: ${player.name}, Rating: ${player.rating}, Ritmo: ${player.stamina}, Posição: ${player.position}`;
     })
     .join('\n\n');
 
@@ -121,5 +121,5 @@ export const generateBenchMarkdown = (
     0,
   );
 
-  return `### **Bench Players**\n${playersInfo}\n\n###### *Total Rating: ${totalRating}*\n\n`;
+  return `### **Reservas**\n${playersInfo}\n\n###### *Rating total: ${totalRating}*\n\n`;
 };
