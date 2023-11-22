@@ -67,11 +67,11 @@ export const PUT = async (request: Request) => {
 export const DELETE = async (request: Request) => {
   try {
     const json = await request.json();
+    console.log('JSON', json);
     const body = DeletePlayerSchema.parse(json);
 
-    console.log('Before running');
-    await db.delete(playerTable).where(eq(playerTable.id, body.id));
-    console.log('After running');
+    console.log('ID', body);
+    await db.delete(playerTable).where(eq(playerTable.id, body.id)).run();
     return NextResponse.json({});
   } catch (error) {
     if (error instanceof z.ZodError) {
