@@ -57,6 +57,9 @@ const TeamDraw = ({ players }: { players: IPlayer[] }) => {
         draggable: true,
         theme: 'light',
       });
+
+      setIsLoading(false);
+      return;
     }
 
     const { response } = await result.json();
