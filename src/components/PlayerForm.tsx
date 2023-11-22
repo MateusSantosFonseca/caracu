@@ -63,6 +63,9 @@ const PlayerForm = (props: IPlayerFormProps) => {
   return (
     <form onSubmit={handleCreate}>
       <div className="space-y-4">
+        <div className="text-lg font-semibold text-gray-700">
+          Adicionar novo jogador
+        </div>
         <div>
           <label className="text-sm font-bold text-gray-700" htmlFor="name">
             Name
@@ -145,12 +148,12 @@ const PlayerForm = (props: IPlayerFormProps) => {
         </div>
       </div>
 
-      <div className="mt-5">
+      <div className="mt-8 space-y-4">
         <button
           className="rounded bg-blue-500 px-5 py-1 font-bold text-white hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300/50"
           type="submit"
         >
-          Save
+          Adicionar
         </button>
       </div>
     </form>

@@ -28,7 +28,10 @@ const Player = async () => {
     <div className="mt-4">
       <PlayerForm />
 
-      <div className="mt-5">
+      <div className="mt-6">
+        <div className="mb-3 text-lg font-semibold text-gray-700">
+          Lista de jogadores
+        </div>
         {players.map((elt) => (
           <div key={elt.id} className="mb-1 flex items-center gap-x-1">
             <DeletePlayerEntry id={elt.id} />

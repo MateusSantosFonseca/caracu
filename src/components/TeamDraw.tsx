@@ -35,21 +35,10 @@ const TeamDraw = ({ players }: { players: IPlayer[] }) => {
   return (
     <div className="space-y-8">
       <div className="my-8 flex">
-        Hello,
+        Oi,
         <div className="mx-1 font-semibold"> {user?.username?.toString()}</div>
-        team&apos;s manager!
-      </div>
-      <div className="space-y-8">
-        <TeamCards
-          title="Selected Players"
-          players={selectedPlayers}
-          onSelect={onSelectAlreadySelectedPlayer}
-        />
-        <TeamCards
-          title="Available Players"
-          players={availablePlayers}
-          onSelect={onSelectAvailablePlayer}
-        />
+        team&apos;s manager. Você deve selecionar ao menos 8 jogadores para
+        poder sortear times!
       </div>
       <div>
         <button
@@ -64,6 +53,22 @@ const TeamDraw = ({ players }: { players: IPlayer[] }) => {
         >
           Draw team
         </button>
+      </div>
+      <div className="grid grid-cols-12 space-x-4">
+        <div className="col-span-6">
+          <TeamCards
+            title="Jogadores disponíveis"
+            players={availablePlayers}
+            onSelect={onSelectAvailablePlayer}
+          />
+        </div>
+        <div className="col-span-6">
+          <TeamCards
+            title="Jogadores selecionados"
+            players={selectedPlayers}
+            onSelect={onSelectAlreadySelectedPlayer}
+          />
+        </div>
       </div>
     </div>
   );
