@@ -21,8 +21,10 @@
     "@clerk/nextjs": "^4.26.1",
     "@hookform/resolvers": "^3.3.2",
     "@libsql/client": "^0.3.6",
+    "@nextui-org/react": "^2.2.9",
     "@t3-oss/env-nextjs": "^0.7.1",
     "drizzle-orm": "^0.28.6",
+    "framer-motion": "^10.16.5",
     "next": "^14.0.1",
     "next-seo": "^6.4.0",
     "next-sitemap": "^4.2.3",
@@ -30,6 +32,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.47.0",
+    "react-markdown": "^9.0.1",
     "sharp": "^0.32.6",
     "zod": "^3.22.4"
   },
