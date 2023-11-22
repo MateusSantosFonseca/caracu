@@ -34,7 +34,7 @@ const smartlyDrawTeam = async (players: PlayerInterface[]) => {
 
   const openAi = getOpenAI();
 
-  console.log("Sending prompt to OpenAI's API");
+  console.log("Sending prompt to OpenAI's API. Params:", params);
   const completion: ChatCompletion =
     await openAi.chat.completions.create(params);
 
