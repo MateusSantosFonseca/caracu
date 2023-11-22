@@ -12,6 +12,6 @@ export enum ChatGptRole {
 }
 
 export enum ChatGptModel {
-  GPT_3_5 = 'gpt-3.5-turbo',
+  GPT_3_5 = 'gpt-3.5-turbo-1106',
   GPT_4 = 'gpt-4',
 }

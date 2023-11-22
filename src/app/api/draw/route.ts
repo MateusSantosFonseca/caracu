@@ -28,7 +28,7 @@ const smartlyDrawTeam = async (players: PlayerInterface[]) => {
 
   const params: ChatCompletionCreateParams = {
     messages: [{ role: ChatGptRole.User, content: prompt }],
-    model: ChatGptModel.GPT_4,
+    model: ChatGptModel.GPT_3_5,
   };
 
   const openAi = getOpenAI();
