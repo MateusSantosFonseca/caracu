@@ -40,7 +40,7 @@ export const DrawedTeamModal = ({
               <Reactmarkdown>{markdownResult}</Reactmarkdown>
               <button
                 type="button"
-                className="mt-4 rounded bg-purple-700 px-10 py-1 font-semibold text-white hover:bg-purple-600"
+                className="mt-4 rounded bg-purple-700 px-10 py-2 font-semibold text-white hover:bg-purple-600"
                 onClick={() => {
                   navigator.clipboard.writeText(markdownResult);
 

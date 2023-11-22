@@ -26,7 +26,7 @@ const TeamCards = (props: TeamCardsProps) => {
           props.players.map((player) => (
             <div
               key={player.id}
-              className="border border-gray-300 px-3 py-1.5"
+              className="border border-gray-300 px-3 py-2 md:py-1.5"
               role="button"
               tabIndex={0}
               onClick={() => props.onSelect(player)}
@@ -40,30 +40,37 @@ const TeamCards = (props: TeamCardsProps) => {
                   <span className="text-gray-700">{player.name}</span>
                 </div>
                 <div className="flex justify-between space-x-2">
-                  <div>
-                    <span className="font-semibold text-gray-700">
-                      Posição:{' '}
-                    </span>
-                    <span className="text-gray-700">
+                  <div className="md:flex">
+                    <div className="font-semibold text-gray-700">Posição</div>
+                    <div className="hidden md:block">
+                      <span className="text-gray-700">:</span>
+                    </div>
+                    <div className="text-gray-700 md:ml-1">
                       {capitalizeFirstLetter(player.position)}
-                    </span>
+                    </div>
                   </div>
-                  <div>
-                    <span className="font-semibold text-gray-700">
-                      Rating:{' '}
-                    </span>
-                    <span className="text-gray-700">{player.rating}</span>
+                  <div className="md:flex">
+                    <div className="font-semibold text-gray-700">Rating</div>
+                    <div className="hidden md:block">
+                      <span className="text-gray-700">:</span>
+                    </div>
+                    <div className="text-gray-700 md:ml-1">{player.rating}</div>
                   </div>
-                  <div>
-                    <span className="font-semibold text-gray-700">Ritmo: </span>
-                    <span className="text-gray-700">{player.stamina}</span>
+                  <div className="md:flex">
+                    <div className="font-semibold text-gray-700">Ritmo</div>
+                    <div className="hidden md:block">
+                      <span className="text-gray-700">:</span>
+                    </div>
+                    <div className="text-gray-700 md:ml-1">
+                      {player.stamina}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           ))
         ) : (
-          <div className="border border-gray-300 px-2 py-7 text-center text-gray-700 md:py-5">
+          <div className="border border-gray-300 px-2 py-5 text-center text-gray-700">
             Sem jogadores nessa lista
           </div>
         )}

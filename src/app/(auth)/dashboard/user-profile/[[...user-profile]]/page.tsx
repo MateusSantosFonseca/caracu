@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 const UserProfilePage = () => (
-  <div className="my-6 -ml-16">
+  <div className="my-6 md:-ml-16">
     <UserProfile />
   </div>
 );

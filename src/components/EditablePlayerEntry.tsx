@@ -77,7 +77,7 @@ const EditablePlayerEntry = (props: IEditablePlayerEntryProps) => {
                   <span className="text-gray-600">{props.stamina}</span>
                 </div>
                 <div className="col-span-4">
-                  <span className="font-semibold text-gray-700">Posição: </span>
+                  <span className="font-semibold text-gray-700">Pos: </span>
                   <span className="text-gray-600">
                     {capitalizeFirstLetter(props.position)}
                   </span>
