@@ -1,9 +1,10 @@
+import { ptBR } from '@clerk/localizations';
 import { ClerkProvider } from '@clerk/nextjs';
 
 export default function AuthLayout({
-  children, // will be a page or nested layout
+  children,
 }: {
   children: React.ReactNode;
 }) {
-  return <ClerkProvider>{children}</ClerkProvider>;
+  return <ClerkProvider localization={ptBR}>{children}</ClerkProvider>;
 }
