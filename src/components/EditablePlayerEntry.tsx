@@ -3,6 +3,7 @@
 import { useState } from 'react';
 
 import type { Position } from '@/models/Schema';
+import { capitalizeFirstLetter } from '@/utils/string';
 
 import { PlayerForm } from './PlayerForm';
 
@@ -46,7 +47,7 @@ const EditablePlayerEntry = (props: IEditablePlayerEntryProps) => {
         </svg>
       </button>
 
-      <div className="ml-1 grow">
+      <div className="ml-4 grow">
         {isEditing ? (
           <PlayerForm
             edit
@@ -60,24 +61,50 @@ const EditablePlayerEntry = (props: IEditablePlayerEntryProps) => {
             handleStopEditing={handleStopEditing}
           />
         ) : (
-          <div className="flex space-x-2">
-            <div>
-              <span className="font-semibold text-gray-700">Nome: </span>
-              <span className="text-gray-600">{props.name}</span>
+          <>
+            <div id="mobile" className="ml-4 grid grid-cols-12 md:hidden">
+              <div className="col-span-12">
+                <span className="font-semibold text-gray-700">Nome: </span>
+                <span className="text-gray-600">{props.name}</span>
+              </div>
+              <div className="col-span-12 grid grid-cols-12">
+                <div className="col-span-4">
+                  <span className="font-semibold text-gray-700">Rating: </span>
+                  <span className="text-gray-600">{props.rating}</span>
+                </div>
+                <div className="col-span-4">
+                  <span className="font-semibold text-gray-700">Ritmo: </span>
+                  <span className="text-gray-600">{props.stamina}</span>
+                </div>
+                <div className="col-span-4">
+                  <span className="font-semibold text-gray-700">Posição: </span>
+                  <span className="text-gray-600">
+                    {capitalizeFirstLetter(props.position)}
+                  </span>
+                </div>
+              </div>
             </div>
-            <div>
-              <span className="font-semibold text-gray-700">Rating: </span>
-              <span className="text-gray-600">{props.rating}</span>
+            <div id="desktop" className="hidden space-x-2 sm:flex md:flex">
+              <div>
+                <span className="font-semibold text-gray-700">Nome: </span>
+                <span className="text-gray-600">{props.name} - </span>
+              </div>
+              <div>
+                <span className="font-semibold text-gray-700">Rating: </span>
+                <span className="text-gray-600">{props.rating} - </span>
+              </div>
+              <div>
+                <span className="font-semibold text-gray-700">Ritmo: </span>
+                <span className="text-gray-600">{props.stamina} - </span>
+              </div>
+              <div>
+                <span className="font-semibold text-gray-700">Posição: </span>
+                <span className="text-gray-600">
+                  {capitalizeFirstLetter(props.position)}
+                </span>
+              </div>
             </div>
-            <div>
-              <span className="font-semibold text-gray-700">Ritmo: </span>
-              <span className="text-gray-600">{props.stamina}</span>
-            </div>
-            <div>
-              <span className="font-semibold text-gray-700">Posição: </span>
-              <span className="text-gray-600">{props.position}</span>
-            </div>
-          </div>
+          </>
         )}
       </div>
     </>

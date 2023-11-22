@@ -25,7 +25,7 @@ const Player = async () => {
     .all();
 
   return (
-    <div className="mt-4">
+    <div className="p-4">
       <PlayerForm />
 
       <div className="mt-6">
@@ -33,7 +33,10 @@ const Player = async () => {
           Lista de jogadores
         </div>
         {players.map((elt) => (
-          <div key={elt.id} className="mb-1 flex items-center gap-x-1">
+          <div
+            key={elt.id}
+            className="mb-1 flex items-center space-x-1 py-1.5 md:py-1"
+          >
             <DeletePlayerEntry id={elt.id} />
 
             <EditablePlayerEntry
