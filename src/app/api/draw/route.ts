@@ -1,4 +1,3 @@
-import console from 'console';
 import { NextResponse } from 'next/server';
 import type {
   ChatCompletion,
@@ -79,6 +78,8 @@ export const POST = async (request: Request) => {
   } catch (error) {
     if (error instanceof z.ZodError)
       return NextResponse.json(error.format(), { status: 422 });
+
+    console.error('Error:', error);
     return NextResponse.json({}, { status: 500 });
   }
 };
