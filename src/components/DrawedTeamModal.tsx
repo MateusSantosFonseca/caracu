@@ -27,7 +27,7 @@ export const DrawedTeamModal = ({
         {(onClose) => (
           <>
             <ModalHeader className="flex flex-col gap-1">
-              Drawed team
+              Times sorteados
             </ModalHeader>
             <ModalBody>
               <Reactmarkdown>{markdownResult}</Reactmarkdown>

@@ -1,20 +1,12 @@
-import type { Position } from '@/models/Schema';
-
-interface PlayerParams {
-  rating: number;
-  position: Position;
-  stamina: number;
-  name: string;
-}
+import type { PlayerInterface } from '@/app/api/draw/route';
 
 interface PromptParams {
-  players: PlayerParams[];
+  players: PlayerInterface[];
 }
 
 export const buildPrompt = (params: PromptParams) => {
   const numberOfTeams = Math.floor(params.players.length / 4);
   const numberOfBenchPlayers = params.players.length % 4;
-
   const thereAreBenchPlayers = numberOfBenchPlayers > 0;
 
   const playersJson = params.players.map((player) => {
@@ -54,4 +46,80 @@ export const buildPrompt = (params: PromptParams) => {
       2. A soma total dos ratings de cada time.
       3. Justificativa para a composição de cada time e por que estão equilibrados entre si.
  `;
+};
+
+export const shuffleArray = (array: any[]): any[] => {
+  const newArray = [...array];
+  let currentIndex = newArray.length;
+  let temporaryValue;
+  let randomIndex;
+
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    temporaryValue = newArray[currentIndex];
+    newArray[currentIndex] = newArray[randomIndex];
+    newArray[randomIndex] = temporaryValue;
+  }
+
+  return newArray;
+};
+
+export const createTeams = (
+  players: PlayerInterface[],
+  teamSize: number,
+): PlayerInterface[][] => {
+  const teams: PlayerInterface[][] = [];
+  let startIndex = 0;
+  const numberOfTeams = Math.floor(players.length / teamSize);
+
+  for (let i = 0; i < numberOfTeams; i += 1) {
+    const endIndex = startIndex + teamSize;
+    const teamPlayers = players.slice(startIndex, endIndex);
+    teams.push(teamPlayers);
+    startIndex = endIndex;
+  }
+
+  return teams;
+};
+
+export const generateTeamMarkdown = (teams: PlayerInterface[][]): string => {
+  return teams
+    .map((team, index) => {
+      const playersInfo = team
+        .map((player, idx) => {
+          const ordinal = idx + 1;
+          return `**${ordinal}°** Name: ${player.name}, Rating: ${player.rating}, Stamina: ${player.stamina}, Position: ${player.position}`;
+        })
+        .join('\n\n');
+
+      const totalRating = team.reduce((acc, player) => acc + player.rating, 0);
+
+      return `### **Team ${String.fromCharCode(
+        65 + index,
+      )}**\n${playersInfo}\n\n###### *Total Rating: ${totalRating}*\n\n`;
+    })
+    .join('\n');
+};
+
+export const generateBenchMarkdown = (
+  benchPlayers: PlayerInterface[],
+): string => {
+  if (benchPlayers.length === 0) {
+    return '';
+  }
+
+  const playersInfo = benchPlayers
+    .map((player, idx) => {
+      const ordinal = idx + 1;
+      return `**${ordinal}°** Name: ${player.name}, Rating: ${player.rating}, Stamina: ${player.stamina}, Position: ${player.position}`;
+    })
+    .join('\n\n');
+
+  const totalRating = benchPlayers.reduce(
+    (acc, player) => acc + player.rating,
+    0,
+  );
+
+  return `### **Bench Players**\n${playersInfo}\n\n###### *Total Rating: ${totalRating}*\n\n`;
 };

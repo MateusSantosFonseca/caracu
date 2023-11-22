@@ -1,15 +1,16 @@
 'use client';
 
 import { useUser } from '@clerk/nextjs';
-import { Tooltip, useDisclosure } from '@nextui-org/react';
+import { useDisclosure } from '@nextui-org/react';
 import { useState } from 'react';
 
 import type { Position } from '@/models/Schema';
 
 import { DrawedTeamModal } from './DrawedTeamModal';
 import { TeamCards } from './TeamCards';
+import { TeamDrawActions } from './TeamDrawActions';
 
-type IPlayer = {
+export type IPlayer = {
   id: number;
   name: string;
   position: Position;
@@ -36,14 +37,14 @@ const TeamDraw = ({ players }: { players: IPlayer[] }) => {
     setAvailablePlayers((prev) => [...prev, player]);
   };
 
-  const handleDraw = async (data: IPlayer[]) => {
+  const handleDraw = async (data: IPlayer[], isSmartDraw: boolean) => {
     setIsLoading(true);
     const result = await fetch(`/api/draw`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify({ players: data, isSmartDraw }),
     });
 
     const { response } = await result.json();
@@ -52,8 +53,6 @@ const TeamDraw = ({ players }: { players: IPlayer[] }) => {
     setMarkdownResult(response);
     setIsLoading(false);
   };
-
-  const notEnoughPlayers = selectedPlayers.length < 8;
 
   return (
     <>
@@ -70,25 +69,11 @@ const TeamDraw = ({ players }: { players: IPlayer[] }) => {
           </div>
           Selecione ao menos 8 jogadores para realizar o sorteio.
         </div>
-        <div>
-          <Tooltip
-            content="Sorteio inteligente, pode demorar até 1 minuto."
-            showArrow
-          >
-            <button
-              type="button"
-              disabled={notEnoughPlayers || isLoading}
-              className={` ${
-                notEnoughPlayers || isLoading ? 'bg-gray-400' : 'bg-purple-800'
-              } rounded-md  px-4 py-2 text-white`}
-              onClick={async () => {
-                await handleDraw(selectedPlayers);
-              }}
-            >
-              {isLoading ? 'Sorteando...' : 'Sortear times'}
-            </button>
-          </Tooltip>
-        </div>
+        <TeamDrawActions
+          handleDraw={handleDraw}
+          isLoading={isLoading}
+          selectedPlayers={selectedPlayers}
+        />
         <div className="grid grid-cols-12 space-x-4">
           <div className="col-span-6">
             <TeamCards
