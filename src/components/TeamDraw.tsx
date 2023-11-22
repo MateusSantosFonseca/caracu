@@ -3,6 +3,7 @@
 import { useUser } from '@clerk/nextjs';
 import { useDisclosure } from '@nextui-org/react';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 import type { Position } from '@/models/Schema';
 
@@ -46,6 +47,17 @@ const TeamDraw = ({ players }: { players: IPlayer[] }) => {
       },
       body: JSON.stringify({ players: data, isSmartDraw }),
     });
+
+    if (!result.ok) {
+      toast.error('Ocorreu um erro ao sortear os times, tente novamente.', {
+        position: 'top-center',
+        autoClose: 4000,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: 'light',
+      });
+    }
 
     const { response } = await result.json();
 
