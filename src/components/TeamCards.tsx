@@ -67,7 +67,7 @@ const TeamCards = (props: TeamCardsProps) => {
             </div>
           ))
         ) : (
-          <div className="border border-gray-300 px-2 py-5 font-semibold text-gray-700">
+          <div className="border border-gray-300 px-2 py-5 text-center text-gray-700">
             Sem jogadores nessa lista
           </div>
         )}

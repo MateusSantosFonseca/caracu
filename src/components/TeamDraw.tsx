@@ -30,6 +30,19 @@ const TeamDraw = ({ players }: { players: IPlayer[] }) => {
     setAvailablePlayers((prev) => [...prev, player]);
   };
 
+  const handleDraw = async (data: IPlayer[]) => {
+    const result = await fetch(`/api/draw`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    const body = await result.json();
+    console.log('body:', body);
+  };
+
   const notEnoughPlayers = selectedPlayers.length < 8;
 
   return (
@@ -47,8 +60,8 @@ const TeamDraw = ({ players }: { players: IPlayer[] }) => {
           className={` ${
             notEnoughPlayers ? 'bg-gray-400' : 'bg-purple-800'
           } rounded-md  px-4 py-2 text-white`}
-          onClick={() => {
-            console.log(selectedPlayers);
+          onClick={async () => {
+            await handleDraw(selectedPlayers);
           }}
         >
           Draw team
