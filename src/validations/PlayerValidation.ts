@@ -10,7 +10,7 @@ export const PlayerSchema = z.object({
 });
 
 export const EditPlayerSchema = z.object({
-  id: z.coerce.number(),
+  id: z.number(),
   rating: z.number().min(1),
   position: z.enum([Position.Pivo, Position.Fixo, Position.Ala]),
   stamina: z.number().min(1),
@@ -18,5 +18,5 @@ export const EditPlayerSchema = z.object({
 });
 
 export const DeletePlayerSchema = z.object({
-  id: z.coerce.number(),
+  id: z.number(),
 });
