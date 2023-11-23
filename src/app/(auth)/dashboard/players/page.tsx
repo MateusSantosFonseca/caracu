@@ -34,7 +34,7 @@ const Player = async () => {
         </div>
         {players.length === 0 && (
           <div className="border border-gray-300 px-2 py-5 text-center text-gray-700">
-            Nenhum jogador cadastrado. Cadastre-os na aba
+            Nenhum jogador cadastrado. Cadastre-os acima.
             <span className="ml-1 font-semibold">Jogadores</span>.
           </div>
         )}

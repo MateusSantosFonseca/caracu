@@ -1,13 +1,14 @@
 /* eslint-disable import/no-extraneous-dependencies, import/extensions */
 import './src/libs/Env.mjs';
 import withBundleAnalyzer from '@next/bundle-analyzer';
+import withPWA from 'next-pwa';
 
 const bundleAnalyzer = withBundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
 });
 
 /** @type {import('next').NextConfig} */
-export default bundleAnalyzer({
+const nextConfig = bundleAnalyzer({
   eslint: {
     dirs: ['.'],
   },
@@ -25,3 +26,10 @@ export default bundleAnalyzer({
     return config;
   },
 });
+
+export default withPWA({
+  dest: 'public',
+  register: true,
+  skipWaiting: true,
+  disable: process.env.NODE_ENV === 'development',
+})(nextConfig);
