@@ -28,12 +28,11 @@ const nextConfig = bundleAnalyzer({
 });
 
 export default withPWA({
-  reactStrictMode: true,
   pwa: {
     dest: 'public',
     register: true,
     skipWaiting: true,
-    buildExcludes: [/middleware-manifest.json$/],
+    buildExcludes: [/middleware-manifest.json$/, /sw.js$/],
   },
   disable: process.env.NODE_ENV === 'development',
 })(nextConfig);
