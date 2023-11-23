@@ -1,29 +1,35 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 type IDeletePlayerEntryProps = {
   id: number;
+  name: string;
 };
 
 const DeletePlayerEntry = (props: IDeletePlayerEntryProps) => {
   const router = useRouter();
 
   const handleDelete = async () => {
-    console.log(
-      JSON.stringify({
-        id: props.id,
-      }),
-    );
-
     await fetch(`/api/player`, {
-      method: 'DELETE',
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         id: props.id,
+        isDeleteFlow: true,
       }),
+    });
+
+    toast.success(`O jogador ${props.name} foi excluído com sucesso!!`, {
+      position: 'top-center',
+      autoClose: 4000,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme: 'light',
     });
 
     router.refresh();

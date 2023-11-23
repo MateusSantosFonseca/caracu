@@ -16,7 +16,9 @@ const Dashboard = async () => {
   const players = await db
     .select()
     .from(playerTable)
-    .where((aliases) => sql`${aliases.teamId} = ${userId}`)
+    .where(
+      (player) => sql`${player.teamId} = ${userId} AND ${player.active} = true`,
+    )
     .all();
 
   return (

@@ -12,6 +12,7 @@ export const playerTable = sqliteTable('player', {
   name: text('name').notNull(),
   teamId: text('team_id').notNull(),
   rating: integer('rating').notNull(),
+  active: integer('active', { mode: 'boolean' }),
   position: text('position', {
     enum: [Position.Ala, Position.Fixo, Position.Pivo],
   }).notNull(),

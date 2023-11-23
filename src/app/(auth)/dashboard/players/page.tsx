@@ -19,9 +19,9 @@ const Player = async () => {
   const players = await db
     .select()
     .from(playerTable)
-    .where((aliases) => {
-      return sql`${aliases.teamId} = ${userId}`;
-    })
+    .where(
+      (player) => sql`${player.teamId} = ${userId} AND ${player.active} = true`,
+    )
     .all();
 
   return (
@@ -32,12 +32,18 @@ const Player = async () => {
         <div className="mb-3 text-lg font-semibold text-gray-700">
           Lista de jogadores
         </div>
+        {players.length === 0 && (
+          <div className="border border-gray-300 px-2 py-5 text-center text-gray-700">
+            Nenhum jogador cadastrado. Cadastre-os na aba
+            <span className="ml-1 font-semibold">Jogadores</span>.
+          </div>
+        )}
         {players.map((player) => (
           <div
             key={player.id}
             className="mb-1 flex items-center space-x-1 py-1.5 md:py-1"
           >
-            <DeletePlayerEntry id={player.id} />
+            <DeletePlayerEntry id={player.id} name={player.name} />
             <EditablePlayerEntry
               id={player.id}
               name={player.name}

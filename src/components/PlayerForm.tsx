@@ -3,6 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import type { z } from 'zod';
 
 import { Position } from '@/models/Schema';
@@ -39,8 +40,18 @@ const PlayerForm = (props: IPlayerFormProps) => {
         },
         body: JSON.stringify({
           id: props.id,
+          isDeleteFlow: false,
           ...data,
         }),
+      });
+
+      toast.success(`O jogador ${data.name} foi editado com sucesso!`, {
+        position: 'top-center',
+        autoClose: 4000,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: 'light',
       });
 
       props.handleStopEditing();
@@ -51,6 +62,15 @@ const PlayerForm = (props: IPlayerFormProps) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
+      });
+
+      toast.success(`O jogador ${data.name} foi adicionado com sucesso!`, {
+        position: 'top-center',
+        autoClose: 4000,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: 'light',
       });
 
       setFocus('name');
