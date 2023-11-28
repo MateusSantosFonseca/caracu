@@ -1,1 +1,0 @@
-ALTER TABLE `player` RENAME COLUMN `text` TO `position`;

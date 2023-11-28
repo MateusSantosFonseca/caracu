@@ -5,29 +5,8 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1693571350622,
-      "tag": "0000_blushing_warhawk",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1700534352975,
-      "tag": "0001_jazzy_stingray",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1700534389453,
-      "tag": "0002_bright_sabra",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "5",
-      "when": 1700707173264,
-      "tag": "0003_amazing_black_tom",
+      "when": 1701153153310,
+      "tag": "0000_gifted_squadron_supreme",
       "breakpoints": true
     }
   ]

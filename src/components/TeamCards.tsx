@@ -1,6 +1,6 @@
 'use client';
 
-import type { Position } from '@/models/Schema';
+import type { Position, Stamina } from '@/models/Schema';
 import { capitalizeFirstLetter } from '@/utils/string';
 
 type IPlayer = {
@@ -8,7 +8,7 @@ type IPlayer = {
   name: string;
   position: Position;
   rating: number;
-  stamina: number;
+  stamina: Stamina;
 };
 
 type TeamCardsProps = {
@@ -18,9 +18,18 @@ type TeamCardsProps = {
 };
 
 const TeamCards = (props: TeamCardsProps) => {
+  const selectedPlayersNumber = props.players.length;
+
   return (
     <div className="space-y-3">
-      <div className="font-semibold text-gray-800">{props.title}</div>
+      <div className="space-y-1">
+        <div className="font-semibold text-gray-800">{props.title}</div>
+        <div className="text-sm text-gray-600">
+          {selectedPlayersNumber === 0 ? 'Nenhum' : selectedPlayersNumber}{' '}
+          jogador
+          {selectedPlayersNumber > 1 ? 'es' : ''}
+        </div>
+      </div>
       <div className="space-y-2.5">
         {props.players.length > 0 ? (
           props.players.map((player) => (
@@ -45,7 +54,7 @@ const TeamCards = (props: TeamCardsProps) => {
                     <div className="hidden md:block">
                       <span className="text-gray-700">:</span>
                     </div>
-                    <div className="text-gray-700 md:ml-1">
+                    <div className="text-xs text-gray-700 md:ml-1 md:text-base">
                       {capitalizeFirstLetter(player.position)}
                     </div>
                   </div>
@@ -54,14 +63,16 @@ const TeamCards = (props: TeamCardsProps) => {
                     <div className="hidden md:block">
                       <span className="text-gray-700">:</span>
                     </div>
-                    <div className="text-gray-700 md:ml-1">{player.rating}</div>
+                    <div className="text-xs text-gray-700 md:ml-1 md:text-base">
+                      {player.rating}
+                    </div>
                   </div>
                   <div className="md:flex">
                     <div className="font-semibold text-gray-700">Ritmo</div>
                     <div className="hidden md:block">
                       <span className="text-gray-700">:</span>
                     </div>
-                    <div className="text-gray-700 md:ml-1">
+                    <div className="text-xs text-gray-700 md:ml-1 md:text-base">
                       {player.stamina}
                     </div>
                   </div>

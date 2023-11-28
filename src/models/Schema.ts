@@ -2,9 +2,14 @@ import { sql } from 'drizzle-orm';
 import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
 
 export enum Position {
-  Pivo = 'pivo',
-  Fixo = 'fixo',
-  Ala = 'ala',
+  Atacante = 'Atacante',
+  Defensor = 'Defensor',
+}
+
+export enum Stamina {
+  Regular = 'Regular',
+  Medio = 'Medio',
+  Alto = 'Alto',
 }
 
 export const playerTable = sqliteTable('player', {
@@ -14,9 +19,11 @@ export const playerTable = sqliteTable('player', {
   rating: integer('rating').notNull(),
   active: integer('active', { mode: 'boolean' }),
   position: text('position', {
-    enum: [Position.Ala, Position.Fixo, Position.Pivo],
+    enum: [Position.Atacante, Position.Defensor],
   }).notNull(),
-  stamina: integer('stamina').notNull(),
+  stamina: text('stamina', {
+    enum: [Stamina.Alto, Stamina.Regular, Stamina.Medio],
+  }).notNull(),
   createdAt: integer('created_at', { mode: 'timestamp' }).default(
     sql`(strftime('%s', 'now'))`,
   ),

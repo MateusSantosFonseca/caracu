@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import type { z } from 'zod';
 
-import { Position } from '@/models/Schema';
+import { Position, Stamina } from '@/models/Schema';
 import { PlayerSchema } from '@/validations/PlayerValidation';
 
 type IPlayerFormProps =
@@ -133,9 +133,8 @@ const PlayerForm = (props: IPlayerFormProps) => {
               className="mt-1.5 w-full appearance-none rounded border border-gray-400 px-3 py-2 leading-tight text-gray-700 focus:outline-none focus:ring focus:ring-blue-300/50"
               {...register('position')}
             >
-              <option value={Position.Pivo}>Pivo</option>
-              <option value={Position.Fixo}>Fixo</option>
-              <option value={Position.Ala}>Ala</option>
+              <option value={Position.Atacante}>Atacante</option>
+              <option value={Position.Defensor}>Defensor</option>
             </select>
           </label>
           {errors.position?.message && (
@@ -146,19 +145,17 @@ const PlayerForm = (props: IPlayerFormProps) => {
         </div>
 
         <div>
-          <label className="text-sm font-bold text-gray-700" htmlFor="stamina">
-            Stamina
-            <input
-              id="stamina"
-              type="number"
-              min={1}
-              max={3}
-              placeholder="Insira a stamina do jogador (1 a 3)"
+          <label className="text-sm font-bold text-gray-700" htmlFor="ritmo">
+            Ritmo
+            <select
+              id="ritmo"
               className="mt-1.5 w-full appearance-none rounded border border-gray-400 px-3 py-2 leading-tight text-gray-700 focus:outline-none focus:ring focus:ring-blue-300/50"
-              {...register('stamina', {
-                valueAsNumber: true,
-              })}
-            />
+              {...register('stamina')}
+            >
+              <option value={Stamina.Regular}>Regular</option>
+              <option value={Stamina.Medio}>Medio</option>
+              <option value={Stamina.Alto}>Alto</option>
+            </select>
           </label>
           {errors.stamina?.message && (
             <div className="my-2 text-xs italic text-red-500">

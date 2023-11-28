@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import type { Position } from '@/models/Schema';
+import type { Position, Stamina } from '@/models/Schema';
 import { capitalizeFirstLetter } from '@/utils/string';
 
 import { PlayerForm } from './PlayerForm';
@@ -12,7 +12,7 @@ type IEditablePlayerEntryProps = {
   name: string;
   position: Position;
   rating: number;
-  stamina: number;
+  stamina: Stamina;
 };
 
 const EditablePlayerEntry = (props: IEditablePlayerEntryProps) => {

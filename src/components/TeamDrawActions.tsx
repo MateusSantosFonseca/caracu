@@ -36,7 +36,7 @@ export const TeamDrawActions = ({
                 await handleDraw(selectedPlayers, true);
               }}
             >
-              Sorteio Smart
+              Sorteio smart
             </button>
           </Tooltip>
           <Tooltip content="Sorteio normal." showArrow>

@@ -5,7 +5,7 @@ import { useDisclosure } from '@nextui-org/react';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 
-import type { Position } from '@/models/Schema';
+import type { Position, Stamina } from '@/models/Schema';
 
 import { DrawedTeamModal } from './DrawedTeamModal';
 import { TeamCards } from './TeamCards';
@@ -14,9 +14,9 @@ import { TeamDrawActions } from './TeamDrawActions';
 export type IPlayer = {
   id: number;
   name: string;
-  position: Position;
   rating: number;
-  stamina: number;
+  position: Position;
+  stamina: Stamina;
 };
 
 const TeamDraw = ({ players }: { players: IPlayer[] }) => {

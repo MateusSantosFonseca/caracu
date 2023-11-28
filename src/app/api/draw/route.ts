@@ -5,7 +5,7 @@ import type {
 } from 'openai/resources/chat';
 import { z } from 'zod';
 
-import type { Position } from '@/models/Schema';
+import type { Position, Stamina } from '@/models/Schema';
 import { ChatGptModel, ChatGptRole, getOpenAI } from '@/utils/chatgpt';
 import {
   buildPrompt,
@@ -17,10 +17,10 @@ import {
 import { DrawSchema } from '@/validations/DrawValidation';
 
 export interface PlayerInterface {
+  name: string;
   rating: number;
   position: Position;
-  stamina: number;
-  name: string;
+  stamina: Stamina;
 }
 
 const smartlyDrawTeam = async (players: PlayerInterface[]) => {
