@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { Position, Stamina } from '@/models/Schema';
+import { DrawType, Position, Stamina } from '@/models/Schema';
 
 export const DrawSchema = z.object({
   players: z.array(
@@ -11,5 +11,5 @@ export const DrawSchema = z.object({
       name: z.string().min(1),
     }),
   ),
-  isSmartDraw: z.boolean(),
+  drawType: z.enum([DrawType.Custom, DrawType.Random, DrawType.Smart]),
 });

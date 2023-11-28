@@ -5,7 +5,7 @@ import { useDisclosure } from '@nextui-org/react';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 
-import type { Position, Stamina } from '@/models/Schema';
+import type { DrawType, Position, Stamina } from '@/models/Schema';
 
 import { DrawedTeamModal } from './DrawedTeamModal';
 import { TeamCards } from './TeamCards';
@@ -38,14 +38,14 @@ const TeamDraw = ({ players }: { players: IPlayer[] }) => {
     setAvailablePlayers((prev) => [...prev, player]);
   };
 
-  const handleDraw = async (data: IPlayer[], isSmartDraw: boolean) => {
+  const handleDraw = async (data: IPlayer[], drawType: DrawType) => {
     setIsLoading(true);
     const result = await fetch(`/api/draw`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ players: data, isSmartDraw }),
+      body: JSON.stringify({ players: data, drawType }),
     });
 
     if (!result.ok) {

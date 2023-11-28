@@ -5,15 +5,15 @@ import type {
 } from 'openai/resources/chat';
 import { z } from 'zod';
 
-import type { Position, Stamina } from '@/models/Schema';
+import { DrawType, type Position, type Stamina } from '@/models/Schema';
 import { ChatGptModel, ChatGptRole, getOpenAI } from '@/utils/chatgpt';
+import { customAlgorithmCreateTeam } from '@/utils/draw/custom';
 import {
-  buildPrompt,
-  createTeams,
   generateBenchMarkdown,
   generateTeamMarkdown,
-  shuffleArray,
-} from '@/utils/draw';
+} from '@/utils/draw/markdown';
+import { createTeams, shuffleArray } from '@/utils/draw/random';
+import { buildPrompt } from '@/utils/draw/smart';
 import { DrawSchema } from '@/validations/DrawValidation';
 
 export interface PlayerInterface {
@@ -58,20 +58,35 @@ const randomDrawTeam = (players: PlayerInterface[]): string => {
     const benchPlayers = shuffledPlayers.slice(-numberOfBenchPlayers);
     benchMarkdown = generateBenchMarkdown(benchPlayers);
   }
+
   return teamMarkdown + benchMarkdown;
+};
+
+const customDrawTeam = (players: PlayerInterface[]): string => {
+  const result = customAlgorithmCreateTeam(players);
+  console.log(JSON.stringify(result));
+
+  return '';
 };
 
 export const POST = async (request: Request) => {
   try {
     const json = await request.json();
-    const { players, isSmartDraw } = DrawSchema.parse(json);
-
+    const { players, drawType } = DrawSchema.parse(json);
     let markdownResponse = '';
 
-    if (isSmartDraw) {
-      markdownResponse = await smartlyDrawTeam(players);
-    } else {
-      markdownResponse = randomDrawTeam(players);
+    switch (drawType) {
+      case DrawType.Smart:
+        markdownResponse = await smartlyDrawTeam(players);
+        break;
+      case DrawType.Custom:
+        markdownResponse = customDrawTeam(players);
+        break;
+      case DrawType.Random:
+        markdownResponse = randomDrawTeam(players);
+        break;
+      default:
+        throw new Error('Invalid draw type');
     }
 
     return NextResponse.json({ response: markdownResponse });

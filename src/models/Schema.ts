@@ -12,6 +12,12 @@ export enum Stamina {
   Alto = 'Alto',
 }
 
+export enum DrawType {
+  Smart = 'Smart',
+  Random = 'Random',
+  Custom = 'Custom',
+}
+
 export const playerTable = sqliteTable('player', {
   id: integer('id').primaryKey(),
   name: text('name').notNull(),
