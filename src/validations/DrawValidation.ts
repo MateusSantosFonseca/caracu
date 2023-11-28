@@ -5,6 +5,7 @@ import { DrawType, Position, Stamina } from '@/models/Schema';
 export const DrawSchema = z.object({
   players: z.array(
     z.object({
+      id: z.number().min(1),
       rating: z.number().min(1).max(10),
       position: z.enum([Position.Atacante, Position.Defensor]),
       stamina: z.enum([Stamina.Alto, Stamina.Medio, Stamina.Regular]),

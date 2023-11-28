@@ -61,18 +61,15 @@ export function customAlgorithmCreateTeam(players: PlayerInterface[]) {
         const bestDefensor = getBestDefensor(sortedPlayers);
         selectedPlayer = bestDefensor || (sortedPlayers[0] as PlayerInterface);
       } else {
-        // TODO: Get best player with best stamina (considering Stamina Alto = best, Media = medium, Regular = worst)
         selectedPlayer = sortedPlayers[0] as PlayerInterface;
       }
 
       currentTeam?.push(selectedPlayer);
+      // Remove o jogador da lista de jogadores disponíveis pelo id
       sortedPlayers.splice(
-        sortedPlayers.indexOf({
-          ...selectedPlayer,
-          staminaAsNumber: getStaminaAsNumber(selectedPlayer.stamina),
-        }),
+        sortedPlayers.findIndex((player) => player.id === selectedPlayer?.id),
         1,
-      ); // Remove o jogador da lista de jogadores disponíveis
+      );
     }
 
     currentNumberOfPlayersInEachteam += 1;
@@ -80,16 +77,21 @@ export function customAlgorithmCreateTeam(players: PlayerInterface[]) {
 
   // Jogadores reservas (se houver)
   const reserves: PlayerInterface[] = sortedPlayers;
+  const reservesTotalRating = reserves.reduce(
+    (acc, player) => acc + player.rating,
+    0,
+  );
 
   const teamsWithTotalRating = teams.map((team) => {
     const totalRating = team.reduce((acc, player) => acc + player.rating, 0);
     return { team, totalRating };
   });
 
-  const reservesWithTotalRating = reserves.map((reserve) => {
-    const totalRating = reserve.rating;
-    return { team: [reserve], totalRating };
-  });
-
-  return { teams: teamsWithTotalRating, reserves: reservesWithTotalRating };
+  return {
+    teams: teamsWithTotalRating,
+    reserves: {
+      players: reserves,
+      totalRating: reservesTotalRating,
+    },
+  };
 }

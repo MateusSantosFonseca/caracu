@@ -17,6 +17,7 @@ import { buildPrompt } from '@/utils/draw/smart';
 import { DrawSchema } from '@/validations/DrawValidation';
 
 export interface PlayerInterface {
+  id: number;
   name: string;
   rating: number;
   position: Position;
@@ -64,7 +65,19 @@ const randomDrawTeam = (players: PlayerInterface[]): string => {
 
 const customDrawTeam = (players: PlayerInterface[]): string => {
   const result = customAlgorithmCreateTeam(players);
-  console.log(JSON.stringify(result));
+
+  if (result) {
+    const teamMarkdown: string = generateTeamMarkdown(
+      result.teams.map((team) => team.team),
+    );
+
+    let benchMarkdown = '';
+    if (result.reserves.players.length > 0) {
+      benchMarkdown = generateBenchMarkdown(result.reserves.players);
+    }
+
+    return teamMarkdown + benchMarkdown;
+  }
 
   return '';
 };
