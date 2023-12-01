@@ -1,6 +1,6 @@
 # Caracu: Smart Team Drawing Application
 🌟 Caracu is an intelligent team drawing application designed to help you create balanced teams effortlessly. 
-It allows you to sign up (as a team), log in, manage players and their characteristics (CRUD), and perform team draws with ease.
+It allows you to sign up and log in (as a team), manage players and their characteristics (CRUD), and perform team draws with ease.
 
 ### Build status
 [![Netlify Status](https://api.netlify.com/api/v1/badges/1224f64e-8191-492f-a9a6-6414bd64af21/deploy-status)](https://app.netlify.com/sites/scintillating-vacherin-9841c3/deploys)
