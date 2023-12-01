@@ -8,10 +8,7 @@ import { z } from 'zod';
 import { DrawType, type Position, type Stamina } from '@/models/Schema';
 import { ChatGptModel, ChatGptRole, getOpenAI } from '@/utils/chatgpt';
 import { customAlgorithmCreateTeam } from '@/utils/draw/custom';
-import {
-  generateBenchMarkdown,
-  generateTeamMarkdown,
-} from '@/utils/draw/markdown';
+import { generateMarkdown } from '@/utils/draw/markdown';
 import { createTeams, shuffleArray } from '@/utils/draw/random';
 import { buildPrompt } from '@/utils/draw/smart';
 import { DrawSchema } from '@/validations/DrawValidation';
@@ -23,6 +20,8 @@ export interface PlayerInterface {
   position: Position;
   stamina: Stamina;
 }
+
+const NUMBER_OF_TEAM_PLAYERS = 4;
 
 const smartlyDrawTeam = async (players: PlayerInterface[]) => {
   const prompt = buildPrompt({ players });
@@ -48,38 +47,30 @@ const smartlyDrawTeam = async (players: PlayerInterface[]) => {
 
 const randomDrawTeam = (players: PlayerInterface[]): string => {
   const shuffledPlayers = shuffleArray(players);
-  const numberOfBenchPlayers = shuffledPlayers.length % 4;
+  const numberOfBenchPlayers = shuffledPlayers.length % NUMBER_OF_TEAM_PLAYERS;
+  const teams: PlayerInterface[][] = createTeams(
+    shuffledPlayers,
+    NUMBER_OF_TEAM_PLAYERS,
+  );
 
-  const teams: PlayerInterface[][] = createTeams(shuffledPlayers, 4);
+  const benchPlayers =
+    numberOfBenchPlayers > 0
+      ? shuffledPlayers.slice(-numberOfBenchPlayers)
+      : [];
 
-  const teamMarkdown: string = generateTeamMarkdown(teams);
-  let benchMarkdown: string = '';
-
-  if (numberOfBenchPlayers > 0) {
-    const benchPlayers = shuffledPlayers.slice(-numberOfBenchPlayers);
-    benchMarkdown = generateBenchMarkdown(benchPlayers);
-  }
-
-  return teamMarkdown + benchMarkdown;
+  const responseMarkdown = generateMarkdown(teams, benchPlayers);
+  return responseMarkdown;
 };
 
 const customDrawTeam = (players: PlayerInterface[]): string => {
   const result = customAlgorithmCreateTeam(players);
 
-  if (result) {
-    const teamMarkdown: string = generateTeamMarkdown(
-      result.teams.map((team) => team.team),
-    );
+  const responseMarkdown = generateMarkdown(
+    result.teams.map((team) => team.team),
+    result.reserves.players,
+  );
 
-    let benchMarkdown = '';
-    if (result.reserves.players.length > 0) {
-      benchMarkdown = generateBenchMarkdown(result.reserves.players);
-    }
-
-    return teamMarkdown + benchMarkdown;
-  }
-
-  return '';
+  return responseMarkdown;
 };
 
 export const POST = async (request: Request) => {

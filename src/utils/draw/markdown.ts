@@ -1,6 +1,6 @@
 import type { PlayerInterface } from '@/app/api/draw/route';
 
-export const generateTeamMarkdown = (teams: PlayerInterface[][]): string => {
+const generateTeamMarkdown = (teams: PlayerInterface[][]): string => {
   return teams
     .map((team, index) => {
       const playersInfo = team
@@ -19,9 +19,7 @@ export const generateTeamMarkdown = (teams: PlayerInterface[][]): string => {
     .join('\n');
 };
 
-export const generateBenchMarkdown = (
-  benchPlayers: PlayerInterface[],
-): string => {
+const generateBenchMarkdown = (benchPlayers: PlayerInterface[]): string => {
   if (benchPlayers.length === 0) {
     return '';
   }
@@ -39,4 +37,17 @@ export const generateBenchMarkdown = (
   );
 
   return `### **Reservas**\n${playersInfo}\n\n###### *Rating total: ${totalRating}*\n\n`;
+};
+
+export const generateMarkdown = (
+  allTeamsPlayers: PlayerInterface[][],
+  benchPlayers: PlayerInterface[],
+) => {
+  const teamMarkdown: string = generateTeamMarkdown(allTeamsPlayers);
+
+  let benchMarkdown = '';
+  if (benchPlayers.length > 0)
+    benchMarkdown = generateBenchMarkdown(benchPlayers);
+
+  return teamMarkdown + benchMarkdown;
 };

@@ -133,8 +133,9 @@ const PlayerForm = (props: IPlayerFormProps) => {
               className="mt-1.5 w-full appearance-none rounded border border-gray-400 px-3 py-2 leading-tight text-gray-700 focus:outline-none focus:ring focus:ring-blue-300/50"
               {...register('position')}
             >
-              <option value={Position.Atacante}>Atacante</option>
+              <option value={Position.Forward}>Atacante</option>
               <option value={Position.Defensor}>Defensor</option>
+              <option value={Position.Any}>Qualquer</option>
             </select>
           </label>
           {errors.position?.message && (
@@ -153,8 +154,8 @@ const PlayerForm = (props: IPlayerFormProps) => {
               {...register('stamina')}
             >
               <option value={Stamina.Regular}>Regular</option>
-              <option value={Stamina.Medio}>Medio</option>
-              <option value={Stamina.Alto}>Alto</option>
+              <option value={Stamina.Normal}>Medio</option>
+              <option value={Stamina.High}>Alto</option>
             </select>
           </label>
           {errors.stamina?.message && (

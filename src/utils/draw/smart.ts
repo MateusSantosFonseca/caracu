@@ -22,7 +22,7 @@ export const buildPrompt = (params: PromptParams) => {
   
     *Cada jogador possui as seguintes informações:*
       - Rating: de 1 a 10, onde 10 é o melhor
-      - Posição: Defensor ou Atacante
+      - Posição: Defensor, Atacante ou Qualquer
       - Ritmo: Alto, Médio ou Regular
 
     *Lista de jogadores disponíveis:* ${JSON.stringify(playersJson)}
@@ -34,7 +34,7 @@ export const buildPrompt = (params: PromptParams) => {
         : 'nenhum jogador reserva'
     }.
     - Cada time deve ser composto por exatamente quatro jogadores.
-    - Um time ideal deve ter pelo menos um jogador capaz de atuar como Defensor.
+    - Um time ideal deve ter pelo menos um jogador capaz de atuar como Defensor (seja exclusivamente Defensor ou Qualquer).
     ${
       thereAreBenchPlayers &&
       '- Certifique-se de que jogadores designados como reserva não seja incluído em nenhum dos times formados.'

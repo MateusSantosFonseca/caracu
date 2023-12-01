@@ -2,14 +2,26 @@ import type { PlayerInterface } from '@/app/api/draw/route';
 import { Position, Stamina } from '@/models/Schema';
 
 function getBestDefensor(players: PlayerInterface[]) {
-  return players.find((player) => player.position === Position.Defensor);
+  const bestDefensor = players.find(
+    (player) => player.position === Position.Defensor,
+  );
+
+  const bestDefenseOrForwardPlayer = players.find(
+    (player) => player.position === Position.Any,
+  );
+
+  if (!bestDefensor || !bestDefenseOrForwardPlayer) return undefined;
+
+  return bestDefensor?.rating > bestDefenseOrForwardPlayer?.rating
+    ? bestDefensor
+    : bestDefenseOrForwardPlayer;
 }
 
 function getStaminaAsNumber(stamina: Stamina) {
   switch (stamina) {
-    case Stamina.Alto:
+    case Stamina.High:
       return 3;
-    case Stamina.Medio:
+    case Stamina.Normal:
       return 2;
     case Stamina.Regular:
       return 1;
@@ -33,9 +45,11 @@ export function customAlgorithmCreateTeam(players: PlayerInterface[]) {
 
   const playersWithStaminaAsNumber = getPlayersWithStaminaAsNumber(players);
 
-  // Primeiro ordena os jogadores por stamina (do mais alto para o mais baixo)
+  // Primeiro ordena os jogadores por stamina (do mais baixo para o mais alto)
+  // A ideia é que como o primeiro time deve ter o melhor defensor, então
+  // para equilibrar vamos dar o melhor defensor em rating com o pior ritmo
   const sortedPlayersByStamina = [...playersWithStaminaAsNumber].sort(
-    (a, b) => b.staminaAsNumber - a.staminaAsNumber,
+    (a, b) => a.staminaAsNumber - b.staminaAsNumber,
   );
 
   // Ordena os jogadores por rating (do mais alto para o mais baixo)

@@ -1,6 +1,6 @@
 import type { PlayerInterface } from '@/app/api/draw/route';
 
-export const shuffleArray = (array: any[]): any[] => {
+export const shuffleArray = (array: PlayerInterface[]): PlayerInterface[] => {
   const newArray = [...array];
   let currentIndex = newArray.length;
   let temporaryValue;
@@ -10,8 +10,8 @@ export const shuffleArray = (array: any[]): any[] => {
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex -= 1;
     temporaryValue = newArray[currentIndex];
-    newArray[currentIndex] = newArray[randomIndex];
-    newArray[randomIndex] = temporaryValue;
+    newArray[currentIndex] = newArray[randomIndex] as PlayerInterface;
+    newArray[randomIndex] = temporaryValue as PlayerInterface;
   }
 
   return newArray;

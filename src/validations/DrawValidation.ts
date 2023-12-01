@@ -7,8 +7,8 @@ export const DrawSchema = z.object({
     z.object({
       id: z.number().min(1),
       rating: z.number().min(1).max(10),
-      position: z.enum([Position.Atacante, Position.Defensor]),
-      stamina: z.enum([Stamina.Alto, Stamina.Medio, Stamina.Regular]),
+      position: z.enum([Position.Forward, Position.Defensor, Position.Any]),
+      stamina: z.enum([Stamina.High, Stamina.Normal, Stamina.Regular]),
       name: z.string().min(1),
     }),
   ),

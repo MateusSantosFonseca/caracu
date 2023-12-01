@@ -62,25 +62,28 @@ const EditablePlayerEntry = (props: IEditablePlayerEntryProps) => {
           />
         ) : (
           <>
-            <div id="mobile" className="ml-4 grid grid-cols-12 md:hidden">
+            <div
+              id="mobile"
+              className="ml-4 grid grid-cols-12 space-y-1 md:hidden"
+            >
               <div className="col-span-12">
                 <span className="font-semibold text-gray-700">Nome: </span>
                 <span className="text-gray-600">{props.name}</span>
               </div>
               <div className="col-span-12 grid grid-cols-12">
                 <div className="col-span-4">
-                  <span className="font-semibold text-gray-700">Rating: </span>
-                  <span className="text-gray-600">{props.rating}</span>
+                  <div className="font-semibold text-gray-700">Rating</div>
+                  <div className="text-gray-600">{props.rating}</div>
                 </div>
                 <div className="col-span-4">
-                  <span className="font-semibold text-gray-700">Ritmo: </span>
-                  <span className="text-gray-600">{props.stamina}</span>
+                  <div className="font-semibold text-gray-700">Ritmo</div>
+                  <div className="text-gray-600">{props.stamina}</div>
                 </div>
                 <div className="col-span-4">
-                  <span className="font-semibold text-gray-700">Pos: </span>
-                  <span className="text-gray-600">
+                  <div className="font-semibold text-gray-700">Posição</div>
+                  <div className="text-gray-600">
                     {capitalizeFirstLetter(props.position)}
-                  </span>
+                  </div>
                 </div>
               </div>
             </div>
