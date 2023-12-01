@@ -12,7 +12,7 @@ function getBestDefensor(players: PlayerInterface[]) {
 
   if (!bestDefensor || !bestDefenseOrForwardPlayer) return undefined;
 
-  return bestDefensor?.rating > bestDefenseOrForwardPlayer?.rating
+  return bestDefensor?.rating >= bestDefenseOrForwardPlayer?.rating
     ? bestDefensor
     : bestDefenseOrForwardPlayer;
 }
@@ -37,6 +37,14 @@ function getPlayersWithStaminaAsNumber(players: PlayerInterface[]) {
       staminaAsNumber: getStaminaAsNumber(player.stamina),
     };
   });
+}
+
+function sortPlayersByRating(
+  players: PlayerInterface[],
+  sortType: 'asc' | 'desc',
+): PlayerInterface[] {
+  if (sortType === 'asc') return players.sort((a, b) => a.rating - b.rating);
+  return players.sort((a, b) => b.rating - a.rating);
 }
 
 export function customAlgorithmCreateTeam(players: PlayerInterface[]) {
@@ -87,6 +95,13 @@ export function customAlgorithmCreateTeam(players: PlayerInterface[]) {
     }
 
     currentNumberOfPlayersInEachteam += 1;
+    // Garante que os times tenham jogadores com rating equilibrados
+    // pois a cada jogador novo adicionado, o time que acaba de receber o de melhor rating
+    // deve receber o de pior rating e vice-versa
+    sortPlayersByRating(
+      sortedPlayers,
+      currentNumberOfPlayersInEachteam % 2 ? 'asc' : 'desc',
+    );
   }
 
   // Jogadores reservas (se houver)
